@@ -3,16 +3,16 @@ import tweepy
 from os import environ
 from random import randint
 
-CONSUMER_KEY = environ['CONSUMER_KEY']
-CONSUMER_SECRET = environ['CONSUMER_SECRET']
-ACCESS_KEY = environ['ACCESS_KEY']
-ACCESS_SECRET = environ['ACCESS_SECRET']
+# CONSUMER_KEY = environ['CONSUMER_KEY']
+# CONSUMER_SECRET = environ['CONSUMER_SECRET']
+# ACCESS_KEY = environ['ACCESS_KEY']
+# ACCESS_SECRET = environ['ACCESS_SECRET']
 
-auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-api = tweepy.API(auth)
+# auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+# auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
+# api = tweepy.API(auth)
 
-user = api.get_user(screen_name='trolley_trial')
+# user = api.get_user(screen_name='trolley_trial')
 
 def make_problem():
     file = open('twemojis.txt', 'r')
@@ -34,9 +34,16 @@ def make_problem():
     return emoji.emojize(pretweet, use_aliases=True)
 
 def action():
-    tweet = user.timeline()[0]
-    if 'Who' in tweet.text:
-        solve_problem(tweet)
+    TL = user.timeline()
+    if len(TL) > 0:
+        tweet = user.timeline()[0]
+        if 'Who' in tweet.text:
+            solve_problem(tweet)
+        else:
+            new_problem = make_problem()
+            with open('last_tweet.txt','w', encoding='utf-8') as f:
+                f.write(new_problem)
+            api.update_status(new_problem)
     else:
         new_problem = make_problem()
         with open('last_tweet.txt','w', encoding='utf-8') as f:
