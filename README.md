@@ -1,0 +1,2 @@
+# Trolley Problem Bot 🚂
+Your mini moral dilema delivered to your Twitter timeline every couple of hours. This [@bot_trolley](https://twitter.com/bot_trolley) posts [trolley problems](https://en.wikipedia.org/wiki/Trolley_problem) which are decided based on the number of Likes and Retweets that it receives. In the event of inaction or tie, the train doesn't change rails. The outcome is Tweeted one hour after the dilemma is posted.
