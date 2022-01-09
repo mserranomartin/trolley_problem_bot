@@ -3,16 +3,16 @@ import tweepy
 from os import environ
 from random import randint
 
-# CONSUMER_KEY = environ['CONSUMER_KEY']
-# CONSUMER_SECRET = environ['CONSUMER_SECRET']
-# ACCESS_KEY = environ['ACCESS_KEY']
-# ACCESS_SECRET = environ['ACCESS_SECRET']
+CONSUMER_KEY = environ['CONSUMER_KEY']
+CONSUMER_SECRET = environ['CONSUMER_SECRET']
+ACCESS_KEY = environ['ACCESS_KEY']
+ACCESS_SECRET = environ['ACCESS_SECRET']
 
-# auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-# auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-# api = tweepy.API(auth)
+auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
+api = tweepy.API(auth)
 
-# user = api.get_user(screen_name='trolley_trial')
+user = api.get_user(screen_name='trolley_trial')
 
 def make_problem():
     file = open('twemojis.txt', 'r')
@@ -21,7 +21,7 @@ def make_problem():
     emoji1 = twemojis.pop(randint(0,n))[:-1]
     emoji2 = twemojis[randint(0,n-1)][:-1]
     pretweet = """
-    Who do you save?
+    Who do you want to save?
     🔁 for {0}
     :heart: for {1}
 
